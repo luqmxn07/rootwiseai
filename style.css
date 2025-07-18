@@ -8,12 +8,14 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   transition: background-color 0.3s, color 0.3s;
-  background: #f0f2f5;
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+  background-size: cover;
   color: #111;
 }
 
 body.dark-mode {
-  background: #121212;
+  background: url('https://images.unsplash.com/photo-1548092372-0d1bd40894a3?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+  background-size: cover;
   color: #eee;
 }
 
@@ -21,6 +23,48 @@ body.dark-mode {
 header {
   text-align: center;
   padding: 2rem 1rem 1rem;
+}
+
+/* ====== Input – Liquid Glass Style ====== */
+input {
+  padding: 12px 20px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 16px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  outline: none;
+  transition: 0.3s ease-in-out;
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+input:focus {
+  border: 1px solid rgba(0, 123, 255, 0.6);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
+/* ====== Dark Mode Input ====== */
+body.dark-mode input {
+  background: rgba(0, 0, 0, 0.3);
+  color: #eee;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode input:focus {
+  border-color: rgba(0, 123, 255, 0.4);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
 }
 
 /* ====== Theme Toggle ====== */
@@ -133,24 +177,40 @@ main {
   transition: background 0.3s;
 }
 
+/* ====== Enhanced Glass Effect ====== */
 .glass {
   background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  border-radius: 40px;
+  padding: 1rem;
+  transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+.glass:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 body.dark-mode .glass {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+  color: #eee;
 }
 
+/* ====== Summary / Status Text ====== */
 .summary .status {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
+/* ====== Map Styling ====== */
 #map {
   width: 100%;
   height: 300px;
@@ -158,6 +218,7 @@ body.dark-mode .glass {
   margin-top: 1rem;
 }
 
+/* ====== Footer ====== */
 .footer {
   text-align: center;
   font-size: 0.9rem;

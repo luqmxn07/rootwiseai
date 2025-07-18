@@ -9,6 +9,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="light-mode">
+
+  <!-- Theme toggle -->
   <div class="theme-toggle">
     <label class="switch">
       <input type="checkbox" id="themeSwitch" />
@@ -17,66 +19,69 @@
     <span id="modeLabel">Dark Mode</span>
   </div>
 
-  <header>
-    <h1>RouteWise AI</h1>
-    <p>Your Personalized Activity Advisor</p>
-  </header>
+  <!-- GLASS EFFECT CONTAINER -->
+  <div class="glass-container">
+    <header>
+      <h1>RouteWise AI</h1>
+      <p>Your Personalized Activity Advisor</p>
+    </header>
 
-  <main>
-    <div class="location-section">
-      <input type="text" id="locationInput" placeholder="Enter location (e.g., New York)">
-      <button class="btn" onclick="fetchWeather()">Get Advice</button>
-      <button class="btn outline" onclick="getLocation()">📍 Use Current Location</button>
-    </div>
+    <main>
+      <div class="location-section">
+        <input type="text" id="locationInput" placeholder="Enter location (e.g., Kolkata)">
+        <button class="btn" onclick="fetchWeather()">Get Advice</button>
+        <button class="btn outline" onclick="getLocation()">📍 Use Current Location</button>
+      </div>
 
-    <div class="cards">
-      <div class="card glass">
-        <h2>🌤️ Weather</h2>
-        <p>🌡️ Temperature: <span id="temp">--</span>°C</p>
-        <p>💧 Humidity: <span id="humidity">--</span>%</p>
-        <p>🌬️ Wind Speed: <span id="wind">--</span> km/h</p>
-        <p>🌧️ Rain Chance: <span id="rain">--</span> mm</p>
+      <div class="cards">
+        <div class="card glass">
+          <h2>🌤️ Weather</h2>
+          <p>🌡️ Temperature: <span id="temp">--</span>°C</p>
+          <p>💧 Humidity: <span id="humidity">--</span>%</p>
+          <p>🌬️ Wind Speed: <span id="wind">--</span> km/h</p>
+          <p>🌧️ Rain Chance: <span id="rain">--</span>%</p>
+        </div>
+
+        <div class="card glass">
+          <h2>🍃 Air Quality</h2>
+          <p>📊 AQI: <span id="aqi">--</span></p>
+          <canvas id="aqiChart" height="120"></canvas>
+        </div>
+
+        <div class="card glass" id="disasterAlert" style="display:none">
+          <h2>⚠️ Alert</h2>
+          <p id="disasterText">None</p>
+        </div>
+      </div>
+
+      <div class="card glass summary">
+        <h2>📝 Activity Summary</h2>
+        <div class="status">
+          <span id="statusIcon">⏳</span> <strong id="statusText">Waiting...</strong>
+        </div>
+        <p id="suggestion">--</p>
       </div>
 
       <div class="card glass">
-        <h2>🌈 Air Quality</h2>
-        <p>📊 AQI: <span id="aqi">--</span></p>
-        <canvas id="aqiChart" height="120"></canvas>
+        <h2>📈 Hourly Forecast</h2>
+        <canvas id="forecastChart" height="120"></canvas>
       </div>
 
-      <div class="card glass" id="disasterAlert" style="display:none">
-        <h2>⚠️ Alert</h2>
-        <p id="disasterText">None</p>
+      <div class="card glass">
+        <h2>📍 Location Map</h2>
+        <div id="map"></div>
       </div>
-    </div>
 
-    <div class="card glass summary">
-      <h2>📝 Activity Summary</h2>
-      <div class="status">
-        <span id="statusIcon">⏳</span> <strong id="statusText">Waiting...</strong>
+      <div class="card glass">
+        <h2>📅 Recent Activity</h2>
+        <ul id="activityHistory"></ul>
       </div>
-      <p id="suggestion">--</p>
-    </div>
+    </main>
 
-    <div class="card glass">
-      <h2>📈 Hourly Forecast</h2>
-      <canvas id="forecastChart" height="120"></canvas>
-    </div>
-
-    <div class="card glass">
-      <h2>📍 Location Map</h2>
-      <div id="map"></div>
-    </div>
-
-    <div class="card glass">
-      <h2>📅 Recent Activity</h2>
-      <ul id="activityHistory"></ul>
-    </div>
-  </main>
-
-  <footer class="footer">
-    Built with ❤️ for Hack Synthesis 2.0
-  </footer>
+    <footer class="footer">
+      Built with ❤️ for Hack Synthesis 2.0
+    </footer>
+  </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="script.js"></script>

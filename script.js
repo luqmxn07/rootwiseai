@@ -1,4 +1,4 @@
-const apiKey = "564d3114676c422f8d590953251707";
+const apiKey = "c2ae9e8fd3467d8c69bb143b83cfb999"; // WeatherStack API key
 
 const themeSwitch = document.getElementById("themeSwitch");
 const modeLabel = document.getElementById("modeLabel");
@@ -15,9 +15,8 @@ let markerInstance = null;
 async function fetchWeather() {
   const location = document.getElementById("locationInput").value.trim();
   if (!location) return alert("Please enter a location!");
-
   try {
-    getWeatherData(location);
+    await getWeatherData(location);
   } catch (err) {
     alert("Error fetching weather data.");
     console.error(err);
@@ -31,9 +30,8 @@ function getLocation() {
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
         try {
-          const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`);
-          const data = await res.json();
-          getWeatherData(`${lat},${lon}`, data.location.name);
+          const query = `${lat},${lon}`;
+          await getWeatherData(query, "Current Location");
         } catch (err) {
           alert("Error getting current location weather.");
         }
@@ -47,22 +45,22 @@ function getLocation() {
 
 async function getWeatherData(query, label = "Location") {
   try {
-    const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${query}`);
+    const res = await fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${query}`);
     const json = await res.json();
 
-    if (!json || !json.current) return alert("Invalid response from WeatherAPI.");
+    if (!json || !json.current) return alert("Invalid response from WeatherStack.");
 
     const weather = json.current;
     const locationName = json.location.name;
 
     const data = {
-      temp: weather.temp_c,
+      temp: weather.temperature,
       humidity: weather.humidity,
-      wind: weather.wind_kph,
-      rain: weather.precip_mm,
-      aqi: Math.floor(Math.random() * 150), // WeatherAPI requires paid plan for AQI. Using random fallback.
-      disaster: "None", // still placeholder
-      forecast: [weather.temp_c - 1, weather.temp_c, weather.temp_c + 1]
+      wind: weather.wind_speed,
+      rain: weather.precip,
+      aqi: Math.floor(Math.random() * 150), // No AQI support in free tier
+      disaster: "None",
+      forecast: [weather.temperature - 1, weather.temperature, weather.temperature + 1]
     };
 
     updateUI(data);
